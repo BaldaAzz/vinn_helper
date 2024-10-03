@@ -8,7 +8,10 @@ public class VinNumber {
 
     @Id
     private String vinNumber;
-    private Long carInfoId;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private CarInfo carInfo;
 
     public String getVinNumber() {
         return vinNumber;
@@ -18,11 +21,11 @@ public class VinNumber {
         this.vinNumber = vinNumber;
     }
 
-    public Long getCarInfoId() {
-        return carInfoId;
+    public CarInfo getCarInfo() {
+        return carInfo;
     }
 
-    public void setCarInfoId(Long carInfoId) {
-        this.carInfoId = carInfoId;
+    public void setCarInfoId(CarInfo carInfo) {
+        this.carInfo = carInfo;
     }
 }

@@ -11,7 +11,11 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long creatorId;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private User creatorId;
+
     private String title;
     private String description;
     private ZonedDateTime publicationDate;
@@ -26,11 +30,11 @@ public class Article {
         this.id = id;
     }
 
-    public Long getCreator() {
+    public User getCreator() {
         return creatorId;
     }
 
-    public void setCreator(Long creator) {
+    public void setCreator(User creator) {
         this.creatorId = creator;
     }
 

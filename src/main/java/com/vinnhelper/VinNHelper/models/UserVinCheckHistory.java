@@ -10,9 +10,14 @@ public class UserVinCheckHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long userId;
-    private String vinNumber;
-    private Long carInfoId;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "vinNumber")
+    private VinNumber vinNumber;
 
     public Long getId() {
         return id;
@@ -22,27 +27,19 @@ public class UserVinCheckHistory {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getVinNumber() {
+    public VinNumber getVinNumber() {
         return vinNumber;
     }
 
-    public void setVinNumber(String vinNumber) {
+    public void setVinNumber(VinNumber vinNumber) {
         this.vinNumber = vinNumber;
-    }
-
-    public Long getCarInfoId() {
-        return carInfoId;
-    }
-
-    public void setCarInfoId(Long carInfoId) {
-        this.carInfoId = carInfoId;
     }
 }

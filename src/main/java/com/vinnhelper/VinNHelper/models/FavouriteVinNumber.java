@@ -10,8 +10,14 @@ public class FavouriteVinNumber {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "vinNumber")
     private String vinNumber;
-    private Long userId;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private User user;
 
     public Long getId() {
         return id;
@@ -29,11 +35,11 @@ public class FavouriteVinNumber {
         this.vinNumber = vinNumber;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
