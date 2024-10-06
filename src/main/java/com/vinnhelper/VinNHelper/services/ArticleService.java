@@ -37,7 +37,7 @@ public class ArticleService {
 
         isValidArticle(updatedArticle);
 
-        Article existingArticle = articleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Article not found"));
+        Article existingArticle = findArticle(id);
 
         existingArticle.setTitle(updatedArticle.getTitle());
         existingArticle.setDescription(updatedArticle.getDescription());
@@ -46,7 +46,7 @@ public class ArticleService {
     }
 
     public Article incrimentViewsInArticle(Long id) {
-        Article exisitngArticle = articleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Article not found"));
+        Article exisitngArticle = findArticle(id);
 
         Long currentViews = exisitngArticle.getViews();
         ++currentViews;
@@ -56,7 +56,7 @@ public class ArticleService {
     }
 
     public Article incrimentLikesInArticle(Long id) {
-        Article exisitngArticle = articleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Article not found"));
+        Article exisitngArticle = findArticle(id);
 
         Long currentLikes = exisitngArticle.getLikes();
         ++currentLikes;
@@ -66,7 +66,7 @@ public class ArticleService {
     }
 
     public Article decrimentLikesInArticle(Long id) {
-        Article exisitngArticle = articleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Article not found"));
+        Article exisitngArticle = findArticle(id);
 
         Long currentLikes = exisitngArticle.getLikes();
         --currentLikes;
@@ -93,5 +93,9 @@ public class ArticleService {
         if (article.getDescription() == null || article.getDescription().isEmpty()) {
             throw new IllegalArgumentException("Article description can not be empty");
         }
+    }
+
+    private Article findArticle(Long id) {
+        return articleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Article not found"));
     }
 }
