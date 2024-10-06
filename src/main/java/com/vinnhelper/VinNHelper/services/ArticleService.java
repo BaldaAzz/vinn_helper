@@ -60,7 +60,7 @@ public class ArticleService {
 
         Long currentLikes = exisitngArticle.getLikes();
         ++currentLikes;
-        exisitngArticle.setViews(currentLikes);
+        exisitngArticle.setLikes(currentLikes);
 
         return articleRepository.save(exisitngArticle);
     }
