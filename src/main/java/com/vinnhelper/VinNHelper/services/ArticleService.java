@@ -26,16 +26,30 @@ public class ArticleService {
     }
 
     public Article createArticle(Article article) {
+
+        if (article.getCreator() == null) {
+            throw new IllegalArgumentException("Article creator can not be empty");
+        }
+
+        if (article.getTitle() == null || article.getTitle().isEmpty()) {
+            throw new IllegalArgumentException("Article title can not be empty");
+        }
+
+        if (article.getDescription() == null || article.getTitle().isEmpty()) {
+            throw new IllegalArgumentException("Article description can not be empty");
+        }
+
         return articleRepository.save(article);
     }
 
+//    Добавить проверку на пустые значения
     public Article updateArticle(Long id, Article updatedArticle) {
-        Article exisingArticle = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
+        Article existingArticle = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
 
-        exisingArticle.setTitle(updatedArticle.getTitle());
-        exisingArticle.setDescription(updatedArticle.getDescription());
+        existingArticle.setTitle(updatedArticle.getTitle());
+        existingArticle.setDescription(updatedArticle.getDescription());
 
-        return articleRepository.save(exisingArticle);
+        return articleRepository.save(existingArticle);
     }
 
     public Article incrimentViewsInArticle(Long id) {
