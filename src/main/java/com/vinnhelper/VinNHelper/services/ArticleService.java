@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class ArticleService {
@@ -36,7 +37,7 @@ public class ArticleService {
 
         isValidArticle(updatedArticle);
 
-        Article existingArticle = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
+        Article existingArticle = articleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Article not found"));
 
         existingArticle.setTitle(updatedArticle.getTitle());
         existingArticle.setDescription(updatedArticle.getDescription());
@@ -45,7 +46,7 @@ public class ArticleService {
     }
 
     public Article incrimentViewsInArticle(Long id) {
-        Article exisitngArticle = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
+        Article exisitngArticle = articleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Article not found"));
 
         Long currentViews = exisitngArticle.getViews();
         ++currentViews;
@@ -55,7 +56,7 @@ public class ArticleService {
     }
 
     public Article incrimentLikesInArticle(Long id) {
-        Article exisitngArticle = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
+        Article exisitngArticle = articleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Article not found"));
 
         Long currentLikes = exisitngArticle.getLikes();
         ++currentLikes;
@@ -65,7 +66,7 @@ public class ArticleService {
     }
 
     public Article decrimentLikesInArticle(Long id) {
-        Article exisitngArticle = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
+        Article exisitngArticle = articleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Article not found"));
 
         Long currentLikes = exisitngArticle.getLikes();
         --currentLikes;
@@ -89,7 +90,7 @@ public class ArticleService {
             throw new IllegalArgumentException("Article title can not be empty");
         }
 
-        if (article.getDescription() == null || article.getTitle().isEmpty()) {
+        if (article.getDescription() == null || article.getDescription().isEmpty()) {
             throw new IllegalArgumentException("Article description can not be empty");
         }
     }
