@@ -45,7 +45,7 @@ public class ArticleService {
         return articleRepository.save(existingArticle);
     }
 
-    public Article incrimentViewsInArticle(Long id) {
+    public Article incrementViewsInArticle(Long id) {
         Article exisitngArticle = findArticle(id);
 
         Long currentViews = exisitngArticle.getViews();
@@ -55,7 +55,7 @@ public class ArticleService {
         return articleRepository.save(exisitngArticle);
     }
 
-    public Article incrimentLikesInArticle(Long id) {
+    public Article incrementLikesInArticle(Long id) {
         Article exisitngArticle = findArticle(id);
 
         Long currentLikes = exisitngArticle.getLikes();
@@ -65,7 +65,7 @@ public class ArticleService {
         return articleRepository.save(exisitngArticle);
     }
 
-    public Article decrimentLikesInArticle(Long id) {
+    public Article decrementLikesInArticle(Long id) {
         Article exisitngArticle = findArticle(id);
 
         Long currentLikes = exisitngArticle.getLikes();
