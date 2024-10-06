@@ -27,23 +27,15 @@ public class ArticleService {
 
     public Article createArticle(Article article) {
 
-        if (article.getCreator() == null) {
-            throw new IllegalArgumentException("Article creator can not be empty");
-        }
-
-        if (article.getTitle() == null || article.getTitle().isEmpty()) {
-            throw new IllegalArgumentException("Article title can not be empty");
-        }
-
-        if (article.getDescription() == null || article.getTitle().isEmpty()) {
-            throw new IllegalArgumentException("Article description can not be empty");
-        }
+        isValidArticle(article);
 
         return articleRepository.save(article);
     }
 
-//    Добавить проверку на пустые значения
     public Article updateArticle(Long id, Article updatedArticle) {
+
+        isValidArticle(updatedArticle);
+
         Article existingArticle = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
 
         existingArticle.setTitle(updatedArticle.getTitle());
@@ -85,5 +77,20 @@ public class ArticleService {
 
     public void deleteArticle(Long id) {
         articleRepository.deleteById(id);
+    }
+
+    private void isValidArticle(Article article) {
+
+        if (article.getCreator() == null) {
+            throw new IllegalArgumentException("Article creator can not be empty");
+        }
+
+        if (article.getTitle() == null || article.getTitle().isEmpty()) {
+            throw new IllegalArgumentException("Article title can not be empty");
+        }
+
+        if (article.getDescription() == null || article.getTitle().isEmpty()) {
+            throw new IllegalArgumentException("Article description can not be empty");
+        }
     }
 }
