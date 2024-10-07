@@ -3,6 +3,7 @@ package com.vinnhelper.VinNHelper.models;
 import jakarta.persistence.*;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -15,6 +16,9 @@ public class User {
     private String passwordHash;
     private String email;
     private ZonedDateTime createdAt;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Article> articles;
 
     public Long getId() {
         return id;
@@ -54,5 +58,13 @@ public class User {
 
     public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 }

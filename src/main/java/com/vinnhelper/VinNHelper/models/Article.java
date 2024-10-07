@@ -12,15 +12,19 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private User creatorId;
+//    @ManyToOne
+//    @JoinColumn(name = "id")
+//    private User creatorId;
 
     private String title;
     private String description;
     private ZonedDateTime publicationDate;
     private Long views;
     private Long likes;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public Long getId() {
         return id;
@@ -30,13 +34,13 @@ public class Article {
         this.id = id;
     }
 
-    public User getCreator() {
-        return creatorId;
-    }
-
-    public void setCreator(User creator) {
-        this.creatorId = creator;
-    }
+//    public User getCreator() {
+//        return creatorId;
+//    }
+//
+//    public void setCreator(User creator) {
+//        this.creatorId = creator;
+//    }
 
     public String getTitle() {
         return title;
@@ -76,5 +80,13 @@ public class Article {
 
     public void setLikes(Long likes) {
         this.likes = likes;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

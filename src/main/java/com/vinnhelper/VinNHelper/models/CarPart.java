@@ -10,9 +10,9 @@ public class CarPart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
-    @JoinColumn(name = "vinNumber")
-    private VinNumber vinNumber;
+//    @OneToMany
+//    @JoinColumn(name = "vinNumber")
+//    private VinNumber vinNumber;
 
     private String partName;
     private int originalPartNumber;
@@ -25,13 +25,13 @@ public class CarPart {
         this.id = id;
     }
 
-    public VinNumber getVinNumber() {
-        return vinNumber;
-    }
-
-    public void setVinNumber(VinNumber vinNumber) {
-        this.vinNumber = vinNumber;
-    }
+//    public VinNumber getVinNumber() {
+//        return vinNumber;
+//    }
+//
+//    public void setVinNumber(VinNumber vinNumber) {
+//        this.vinNumber = vinNumber;
+//    }
 
     public String getPartName() {
         return partName;

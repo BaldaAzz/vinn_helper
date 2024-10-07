@@ -82,9 +82,9 @@ public class ArticleService {
 
     private void isValidArticle(Article article) {
 
-        if (article.getCreator() == null) {
-            throw new IllegalArgumentException("Article creator can not be empty");
-        }
+//        if (article.getCreator() == null) {
+//            throw new IllegalArgumentException("Article creator can not be empty");
+//        }
 
         if (article.getTitle() == null || article.getTitle().isEmpty()) {
             throw new IllegalArgumentException("Article title can not be empty");
